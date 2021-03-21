@@ -77,5 +77,11 @@ public class StackArraylist<E> implements Stack<E> {
 	{
 		return size() == 0;
     }
+
+    @Override
+    public E get(int i) {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
