@@ -1,40 +1,50 @@
-/**
- * @author 
- */
+/***************************************
+ * @author Oscar Fernando López Barrios
+ * Carné 20679
+ * Algoritmos y Estructuras de Datos
+ * 
+ * Interface: Stack
+ ***************************************/
 
-public interface Stack<E> 
-{
+//Se crea la interfaz de Stack
+public interface Stack <E> {
 
-    /**
-     * Metodo push
-     * @param item Parametro para ver que item se agrega a la fila
+    /** 
+     * Pre: Se ingresa el dato
+     * @param item se ingresa un dato para agregar al Vector
+     * Post: Se guarda el dato en Stack
      */
-   public void push(E item);
-   
-   
-    /**
-     * Metodo pop, para remover el item de arriba del stack
-     * @param 
+    public void push(E data);
+
+    /** 
+     * Pre: Estan todos los datos en el Stack
+     * @return E se regresa un item.
+     * Post: Se regresa y elimina un dato del Stack
      */
-   public E pop();
-   
-    /**
-     * Metodo peek, para ver el item de arriba del stack
-     * @param 
+    public E pop();
+
+    /** 
+     * Pre: Se encuentra el Stack con sus datos
+     * @return E se regresa cualquier tipo de dato
+     * @throws EmptyStackException regresa un error
+     * Post: Se regresa el dato sobre la lista
      */
-   public E peek();
-  
-    /**
-     * Metodo empty, para ver si el stack esta vacio o no
-     * @param 
+    public E peek();
+
+    public E get(int i);
+
+    /** 
+     * Pre:Se encuentra el Stack
+     * @return boolean se regresa un valor True o False
+     * Post: Si el Stack se encuentra vacio este regresa True
      */
-   public boolean empty();
-   
-    /**
-     * Metodo size, para ver el tamano del stack
-     * @param 
+    public boolean empty();
+
+    /** 
+     * Pre:Se encuentra el Stack 
+     * @return int se regrea cualquier numero
+     * Post: Se devuelve el numero de objetos que tiene el Stack
      */
-   public int size();
-   
+    public int size();
 
 }
