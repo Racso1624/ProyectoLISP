@@ -7,7 +7,7 @@
  ***************************************/
 
 //Se crea la interfaz de Stack
-public interface Stack <E> {
+public interface Stack<E> {
 
     /** 
      * Pre: Se ingresa el dato
