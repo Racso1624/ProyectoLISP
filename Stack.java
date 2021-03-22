@@ -1,7 +1,5 @@
 /***************************************
- * @author Oscar Fernando López Barrios
- * Carné 20679
- * Algoritmos y Estructuras de Datos
+ * @author 
  * 
  * Interface: Stack
  ***************************************/

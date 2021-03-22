@@ -8,6 +8,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         
 
+        //estas 3 lineas son solo para probar la calculadora
+        Aritmeticas arit = new Aritmeticas();
+        String expresion =  "+9*26";
+        System.out.println( arit.Calculadora(expresion));
+
         System.out.println("Bienvenido al Interprete de Lisp");
         System.out.println("Ingrese el codigo de manera correcta para evitar errores y coloque los parentesis separados");
 
