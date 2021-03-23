@@ -23,8 +23,24 @@ public class SetQueue {
      */
     public void agregarValor(String llave, String valor) {
 
-        //agregando el valor y su llave al mapa
-        mapaLisp.put(llave, valor);
+
+        //if para ver si la llave ya esta en la lista o no y asi poder remplazar el valor
+        if(mapaLisp.containsKey(llave)) {
+
+            //eliminando el valor que ya tenemos
+            mapaLisp.remove(llave);
+
+            //remplazando el nuevo valor
+            mapaLisp.put(llave, valor);
+
+
+        } else{
+
+            //agregando el valor y su llave al mapa
+            mapaLisp.put(llave, valor);
+
+        }
+
 
     }
 
@@ -36,7 +52,7 @@ public class SetQueue {
      */
     public String buscarValor(String llave) {
 
-        //agarrando el valor con la llave dada
+        //agarrando el valor con la llave dada y retornandolo
         return mapaLisp.get(llave);
 
     }

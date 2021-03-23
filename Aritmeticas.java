@@ -20,8 +20,6 @@ public class Aritmeticas {
      * Post: retorna el valor de la expresion
      */
     public String Calculadora1(String expresion) {
-
-        //expresion = "(+ (* 78 4) 3)";
     
         
          //creando la intancia de nuestra clase pilaArraylist<E>
