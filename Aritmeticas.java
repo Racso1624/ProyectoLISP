@@ -9,6 +9,11 @@
 public class Aritmeticas {
 
 
+    /** 
+     * Pre: Se ingresa la expresion
+     * @param expresion se ingresa una expresion para poder operarla
+     * Post: retorna el valor de la expresion
+     */
     public String Calculadora1(String expresion) {
 
         //expresion = "(+ (* 78 4) 3)";
@@ -102,6 +107,13 @@ public class Aritmeticas {
 
     }
 
+
+    
+    /** 
+     * Pre: Se ingresa la expresion
+     * @param expresion se ingresa una expresion para poder operarla
+     * Post: retorna el valor de la expresion
+     */
     public String Calculadora2(String expresion) {
 
         
