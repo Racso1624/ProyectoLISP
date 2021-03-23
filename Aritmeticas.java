@@ -9,6 +9,11 @@
 public class Aritmeticas {
 
 
+    public Aritmeticas() { //agregando constructor
+
+    }
+
+
     /** 
      * Pre: Se ingresa la expresion
      * @param expresion se ingresa una expresion para poder operarla

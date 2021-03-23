@@ -13,13 +13,13 @@ import java.util.HashMap;
 public class SetQueue {
 
     //creando el hashmap tipo String, String
-    HashMap<String, String> mapaLisp= new HashMap<String, String>();;
+    HashMap<String, String> mapaLisp= new HashMap<String, String>();
 
 
     /** 
-     * Pre: Se ingresa el dato
-     * @param item se ingresa un dato para agregar al Vector
-     * Post: Se guarda el dato en Stack
+     * Pre: Se ingresa la llave y el valor
+     * @param llave es la llave del valor agragado
+     * @param valor es el nombre del valor a agregar
      */
     public void agregarValor(String llave, String valor) {
 
@@ -30,23 +30,16 @@ public class SetQueue {
 
 
     /** 
-     * Pre: Se ingresa el dato
-     * @param item se ingresa un dato para agregar al Vector
-     * Post: Se guarda el dato en Stack
+     * Pre: Se ingresa la llave
+     * @param llave es el nombre de la llave para poder buscar el valor
+     * Post: retorna el valor de la llave dada
      */
-    public void buscarValor(String valor) {
+    public String buscarValor(String llave) {
+
+        //agarrando el valor con la llave dada
+        return mapaLisp.get(llave);
 
     }
 
-
-
-    /** 
-     * Pre: Se ingresa el dato
-     * @param item se ingresa un dato para agregar al Vector
-     * Post: Se guarda el dato en Stack
-     */
-    public void cambiarValor(String valor) {
-
-    }
     
 }
