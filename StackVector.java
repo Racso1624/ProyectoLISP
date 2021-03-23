@@ -99,4 +99,9 @@ public class StackVector<E> implements Stack<E> {
 
     }
 
+    public void remove(String i) {
+
+        data.remove(i);
+    }
+
 }

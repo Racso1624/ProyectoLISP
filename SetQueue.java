@@ -1,5 +1,6 @@
 //importando clases
 import java.util.HashMap;
+import java.util.*;
 
 
 /***************************************
@@ -50,10 +51,26 @@ public class SetQueue {
      * @param llave es el nombre de la llave para poder buscar el valor
      * Post: retorna el valor de la llave dada
      */
-    public String buscarValor(String llave) {
+    public StackVector<String> buscarValor(StackVector<String> stackVector) {
 
-        //agarrando el valor con la llave dada y retornandolo
-        return mapaLisp.get(llave);
+        StackVector<String> valores = new StackVector<String>();
+        String llave = "";
+
+        //for para recorrer todos los elementos en el stack
+        for(int i = 0; i< stackVector.size(); i++) {
+           
+            llave = stackVector.get(i);
+
+            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
+           if(mapaLisp.containsKey(llave)) {
+               valores.push(mapaLisp.get(llave));
+           } else{
+               valores.push(llave);
+           }
+        }
+
+        //retornando 
+        return valores;
 
     }
 
