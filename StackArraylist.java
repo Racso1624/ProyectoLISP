@@ -80,8 +80,12 @@ public class StackArraylist<E> implements Stack<E> {
 
     @Override
     public E get(int i) {
-        // TODO Auto-generated method stub
-        return null;
+        return data.get(i);
+    }
+
+    @Override
+    public void clear() {
+        data.clear();
     }
     
 }
