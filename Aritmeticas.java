@@ -23,7 +23,7 @@ public class Aritmeticas {
     
         
          //creando la intancia de nuestra clase pilaArraylist<E>
-         StackVector<Integer> pila = new StackVector<Integer>();
+         StackVector<Double> pila = new StackVector<Double>();
          String resultado = "";
     
          //eliminando los espacios del postfix y guardandola como una nueva varaible
@@ -43,7 +43,7 @@ public class Aritmeticas {
              try 
              { 
                  //si el elemento es un entero, se pushea a la pila
-                 pila.push(Integer.parseInt(aString));
+                 pila.push(Double.parseDouble(aString));
                  if(i==nuevoPrefix.length() -1) {
                     System.out.println(aString + "                Push Operando                                    " + aString);
                  } else {
@@ -55,12 +55,12 @@ public class Aritmeticas {
              { 
 
                 //ya que hay una excecpcion, significa que tenemos un operador, por lo que tenemos que popear los dos numeros anteriores
-                int num1 = pila.pop();
-                int num2 = pila.pop();
+                double num1 = pila.pop();
+                double num2 = pila.pop();
 
                 if(aString.equals("+")) {//viendo si el operador es suma
 
-                    int suma = num1 + num2; //realizando la suma
+                    double suma = num1 + num2; //realizando la suma
                     pila.push(suma); //pusheando el resultado a la pila
                     System.out.println("+                Sumar: pop, pop y push del resultado             " + suma);
                    // resultado = Double.valueOf(suma);
@@ -68,7 +68,7 @@ public class Aritmeticas {
         
                 } if(aString.equals("*")) {//viendo si el operador es multiplicacion
         
-                    int multip = num1 * num2; //realizando la suma
+                    double multip = num1 * num2; //realizando la suma
                     pila.push(multip); //pusheando el resultado a la pila
                     System.out.println("*                Multiplicarar: pop, pop y push del resultado     " + multip);
                    // resultado = Double.valueOf(multip);
@@ -76,7 +76,7 @@ public class Aritmeticas {
         
                 } if(aString.equals("-")) {//viendo si el operador es resta
         
-                    int resta = num1 - num2; //realizando la suma
+                    double resta = num1 - num2; //realizando la suma
                     pila.push(resta); //pusheando el resultado a la pila
                     System.out.println("-                Restar: pop, pop y push del resultado           " + resta);
                     //resultado = Double.valueOf(resta);
@@ -84,7 +84,7 @@ public class Aritmeticas {
         
                 } if(aString.equals("/")) {//viendo si el operador es division
         
-                    int divis = num1 / num2; //realizando la suma
+                    double divis = num1 / num2; //realizando la suma
                     pila.push(divis); //pusheando el resultado a la pila
                     System.out.println("/                Dividir: pop, pop y push del resultado          " + divis);
                     //resultado = Double.valueOf(divis);
@@ -97,9 +97,9 @@ public class Aritmeticas {
         }
 
          //guardadno el peek como int asi tenemos el resultado final guardado
-         int peek = pila.peek();
+         double peek = pila.peek();
          //haciendo que el resultado se vuelva string y asi poder retornarlo
-         resultado = Integer.toString(peek);
+         resultado = Double.toString(peek);
  
          //se finalizan las operaciones pero el resultado esta hasta arriba de la pila
          //se hace un peek para poder obtener dicho resultado
@@ -121,7 +121,7 @@ public class Aritmeticas {
 
         
         //creando la intancia de nuestra clase pilaArraylist<E>
-        StackVector<Integer> pila = new StackVector<Integer>();
+        StackVector<Double> pila = new StackVector<Double>();
         String resultado = "";
    
         //eliminando los espacios del postfix y guardandola como una nueva varaible
@@ -142,7 +142,7 @@ public class Aritmeticas {
             try 
             { 
                 //si el elemento es un entero, se pushea a la pila
-                pila.push(Integer.parseInt(aString));
+                pila.push(Double.parseDouble(aString));
                 if(i==nuevoPrefix.length() -1) {
                    System.out.println(aString + "                Push Operando                                    " + aString);
                 } else {
@@ -154,12 +154,12 @@ public class Aritmeticas {
             { 
 
                //ya que hay una excecpcion, significa que tenemos un operador, por lo que tenemos que popear los dos numeros anteriores
-               int num1 = pila.pop();
-               int num2 = pila.pop();
+               double num1 = pila.pop();
+               double num2 = pila.pop();
 
                if(aString.equals("+")) {//viendo si el operador es suma
 
-                   int suma = num1 + num2; //realizando la suma
+                   double suma = num1 + num2; //realizando la suma
                    pila.push(suma); //pusheando el resultado a la pila
                    System.out.println("+                Sumar: pop, pop y push del resultado             " + suma);
                   // resultado = Double.valueOf(suma);
@@ -167,7 +167,7 @@ public class Aritmeticas {
        
                } if(aString.equals("*")) {//viendo si el operador es multiplicacion
        
-                   int multip = num1 * num2; //realizando la suma
+                   double multip = num1 * num2; //realizando la suma
                    pila.push(multip); //pusheando el resultado a la pila
                    System.out.println("*                Multiplicarar: pop, pop y push del resultado     " + multip);
                   // resultado = Double.valueOf(multip);
@@ -175,7 +175,7 @@ public class Aritmeticas {
        
                } if(aString.equals("-")) {//viendo si el operador es resta
        
-                   int resta = num1 - num2; //realizando la suma
+                   double resta = num1 - num2; //realizando la suma
                    pila.push(resta); //pusheando el resultado a la pila
                    System.out.println("-                Restar: pop, pop y push del resultado           " + resta);
                    //resultado = Double.valueOf(resta);
@@ -183,7 +183,7 @@ public class Aritmeticas {
        
                } if(aString.equals("/")) {//viendo si el operador es division
        
-                   int divis = num1 / num2; //realizando la suma
+                   double divis = num1 / num2; //realizando la suma
                    pila.push(divis); //pusheando el resultado a la pila
                    System.out.println("/                Dividir: pop, pop y push del resultado          " + divis);
                    //resultado = Double.valueOf(divis);
@@ -196,9 +196,9 @@ public class Aritmeticas {
        }
 
         //guardadno el peek como int asi tenemos el resultado final guardado
-        int peek = pila.peek();
+        double peek = pila.peek();
         //haciendo que el resultado se vuelva string y asi poder retornarlo
-        resultado = Integer.toString(peek);
+        resultado = Double.toString(peek);
 
         //se finalizan las operaciones pero el resultado esta hasta arriba de la pila
         //se hace un peek para poder obtener dicho resultado
