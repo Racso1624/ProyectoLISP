@@ -1,13 +1,6 @@
-import java.util.ArrayList;
-
-/**
- * 
- * @author José Rodrigo Barrera García 
- * Carnet: 20807
- * Universidad del Valle de Guatemala
- *
- */
 class Quote{
+
+	public Quote(){}
 
 	/**
 	 *

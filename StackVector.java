@@ -104,4 +104,13 @@ public class StackVector<E> implements Stack<E> {
         data.clear();
     }
 
+    public boolean isInStack(String value){
+        for(int i = 0; i < data.size(); i++){
+            if(data.get(i).equals(value)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

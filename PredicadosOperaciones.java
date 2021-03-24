@@ -1,13 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-
-/**
- * 
- * @author José Rodrigo Barrera García
- * Carnet:20807
- * Universidad del Valle de Guatemala
- *
- */
 /***********************
  * 
  * Predicados
@@ -24,7 +16,6 @@ public class PredicadosOperaciones {
      * @return el tipo de operacion segun el predicado
      */
     public String Process(String instrucc){
-        Aritmeticas aritmetics = new Aritmeticas();
         String respuest="";
         
         //Condicional para poder establecer cuando se mando a llamar a cierto predicado
@@ -47,7 +38,7 @@ public class PredicadosOperaciones {
         if(letra.equals(">")){mayorQue=true;}
         if(letra.equals("<")){menorQue=true;}
 
-        //Cuando la operación es del tipo Atom
+        //Cuando la operaciï¿½n es del tipo Atom
         if(atom==true){
             String[] SaltoEspacio=expsplit.split(" ");
 
@@ -59,7 +50,7 @@ public class PredicadosOperaciones {
             }
         }
 
-        //Cuando la operación es del tipo Equal
+        //Cuando la operaciï¿½n es del tipo Equal
         if(equal==true){
             String[] SaltoEspacio=expsplit.split(" ");
             if(SaltoEspacio.length<=2){
@@ -75,7 +66,7 @@ public class PredicadosOperaciones {
             }
         }
 
-        //Cuando la operación es del tipo list
+        //Cuando la operaciï¿½n es del tipo list
         if(list==true){
             String[] palabras=SaltoInstruccion[2].split(" ");
             if(palabras.length>1){
@@ -86,7 +77,7 @@ public class PredicadosOperaciones {
             }
         }
 
-        //Cuando la operación es mayor que
+        //Cuando la operaciï¿½n es mayor que
         if(mayorQue==true){
             String[] SaltoEspacio=expsplit.split(" ");
             if(SaltoEspacio.length<=2){
@@ -109,7 +100,7 @@ public class PredicadosOperaciones {
             }
         }
 
-        //Cuando la operación es menor que
+        //Cuando la operaciï¿½n es menor que
         if(menorQue==true){
             String[] SaltoEspacio=expsplit.split(" ");
             if(SaltoEspacio.length<=2){
