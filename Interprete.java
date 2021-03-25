@@ -7,6 +7,7 @@ public class Interprete {
     Aritmeticas aritmeticas = new Aritmeticas();
     Setq setq = new Setq();
     Quote quote = new Quote();
+    PredicadosOperaciones predicados = new PredicadosOperaciones();
     StackArraylist<Funciones> stackArraylist = new StackArraylist<Funciones>();
 
     public Interprete(){}
@@ -14,6 +15,7 @@ public class Interprete {
     public void Interpretar(String codigo){
 
         verificarSintaxis(codigo);
+        String nombreFuncion = "";
 
         boolean var = false;
         while(var == false){
@@ -24,7 +26,26 @@ public class Interprete {
             char[] characters = codigo.toCharArray();
             char character = characters[0];
             String clave2 = Character.toString(character);
-
+            
+            /*
+            if(nombreFuncion != ""){
+                System.out.println("Hey");
+                boolean var2 = true;
+                while(var2 == true){
+                    if(stackVector.isInStack(nombreFuncion)){
+                        String nuevocodigo = verificarFuncion(nombreFuncion);
+                        cambiarCodigo(stackVector, nombreFuncion, nuevocodigo);
+                        String expresion = "";
+                        for(int i = 0; i < stackVector.size(); i++){
+                            expresion += stackVector.get(i);   
+                            expresion += " ";
+                        }
+                        System.out.println(expresion);
+                    }
+                }
+            }
+            */
+            
             if(clave.equals("-") || clave.equals("+") || clave.equals("*") || clave.equals("/")){
 
                 stackVector = setq.buscarValor(stackVector);
@@ -33,8 +54,6 @@ public class Interprete {
                     expresion += stackVector.get(i);   
                     expresion += " ";
                 }
-
-                System.out.println(expresion);
 
                 if(expresion.contains(" ")) {
                     System.out.println(aritmeticas.Calculadora2(expresion));
@@ -73,7 +92,7 @@ public class Interprete {
                 quote.DevolverQuote(expresion);
                 var = true;
             }
-            else if(clave.toUpperCase().equalsIgnoreCase("QUOTE")){
+            else if(clave.equalsIgnoreCase("QUOTE")){
                 String expresion = "";
                 String[] lineasplit = codigo.split(" ");
 
@@ -86,6 +105,16 @@ public class Interprete {
                 quote.DevolverQuote(expresion);
                 var = true;
             }
+            else if(clave.equals("cond")){
+                String expresion = "";
+                for(int i = 1; i <= 3; i++){
+                    expresion += stackVector.get(i);
+                    expresion += " ";   
+                }
+                String respuesta = predicados.Process(expresion);
+                System.out.println(respuesta);
+                var = true;
+            }
             else if(!verificarFuncion(clave).equals("null")){
                 String valor = stackVector.get(1);
                 String nuevocodigo = verificarFuncion(clave);
@@ -93,6 +122,7 @@ public class Interprete {
                 verificarSintaxis(nuevocodigo);
                 String parametro = regresarParametro(clave);
                 stackVector = cambiarParametro(stackVector, parametro, valor);
+                nombreFuncion = clave;
             }
             else{
                 System.out.println("Codigo incorrecto, operaciones no validas");
@@ -162,7 +192,6 @@ public class Interprete {
     public StackVector<String> cambiarParametro(StackVector<String> stackVector, String parametro, String valor) {
 
         StackVector<String> valores = new StackVector<String>();
-
         //for para recorrer todos los elementos en el stack
         for(int i = 0; i< stackVector.size(); i++) {
            
@@ -175,10 +204,27 @@ public class Interprete {
                valores.push(llave);
            }
         }
-
         //retornando 
         return valores;
+    }
 
+    public StackVector<String> cambiarCodigo(StackVector<String> stackVector, String funcion, String codigo) {
+
+        StackVector<String> valores = new StackVector<String>();
+        //for para recorrer todos los elementos en el stack
+        for(int i = 0; i< stackVector.size(); i++) {
+           
+            String llave = stackVector.get(i);
+
+            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
+           if(llave.equals(funcion)) {
+               valores.push(codigo);
+           } else{
+               valores.push(llave);
+           }
+        }
+        //retornando 
+        return valores;
     }
 
 }

@@ -10,12 +10,17 @@ public class PredicadosOperaciones {
     private final List<String> operadoresReservados = Arrays.asList("atom", "equal", "list", ">", "<");
     //Instancia de aritmeticas
     Aritmeticas operacionesAritmeticas = new Aritmeticas();
+
+    public PredicadosOperaciones(){}
+
     /**
      * 
      * @param instrucc
      * @return el tipo de operacion segun el predicado
      */
     public String Process(String instrucc){
+
+        System.out.println(instrucc);
         String respuest="";
         
         //Condicional para poder establecer cuando se mando a llamar a cierto predicado
@@ -25,10 +30,10 @@ public class PredicadosOperaciones {
         boolean mayorQue=false;
         boolean menorQue=false;
 
-        String[] SaltoInstruccion = instrucc.split("\\(|\\)");
+        String[] SaltoInstruccion = instrucc.split(" ");
         String expsplit="";
 
-        expsplit=String.join("",SaltoInstruccion);
+        expsplit=String.join(" ",SaltoInstruccion);
 
         String letra=expsplit.substring(0,1);
 
