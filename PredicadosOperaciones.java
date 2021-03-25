@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 
- * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y JosÃ© Rodrigo Barrera GarcÃ­a
  * Universidad del Valle de Guatemala
  *
  */
@@ -99,7 +99,7 @@ public class PredicadosOperaciones {
             System.out.print("( ");
 
             for (int i = 2; i < (SaltoInstruccion.length - 1); i++) {
-                if (i < (SaltoInstruccion.length - 2)) {
+                if (i < (SaltoInstruccion.length - 1)) {
                     System.out.print(SaltoInstruccion[i] + ", ");
                 } else {
                     System.out.print(SaltoInstruccion[i]);
