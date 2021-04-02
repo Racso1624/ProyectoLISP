@@ -87,5 +87,15 @@ public class StackArraylist<E> implements Stack<E> {
     public void clear() {
         data.clear();
     }
+
+    @Override
+    public void remove(int i) {
+        data.remove(i);
+    }
+
+    @Override
+    public void removeFirst() {
+        data.remove(0);
+    }
     
 }

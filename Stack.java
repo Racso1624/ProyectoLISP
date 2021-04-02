@@ -47,4 +47,8 @@ public interface Stack<E> {
 
     public void clear();
 
+    public void remove(int i);
+
+    public void removeFirst();
+
 }

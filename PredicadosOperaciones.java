@@ -17,6 +17,9 @@ import java.util.List;
 public class PredicadosOperaciones {
 	//Establecemos un arraylist con los operadores reservados
     private final List<String> operadoresReservados = Arrays.asList("atom", "equal", "list", ">", "<");
+
+    public PredicadosOperaciones(){}
+
     /**
      * 
      * @param instrucc
@@ -98,7 +101,7 @@ public class PredicadosOperaciones {
         if(list==true){
             System.out.print("( ");
 
-            for (int i = 2; i < (SaltoInstruccion.length - 1); i++) {
+            for (int i = 1; i <= (SaltoInstruccion.length - 1); i++) {
                 if (i < (SaltoInstruccion.length - 1)) {
                     System.out.print(SaltoInstruccion[i] + ", ");
                 } else {

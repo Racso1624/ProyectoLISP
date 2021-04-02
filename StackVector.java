@@ -104,6 +104,16 @@ public class StackVector<E> implements Stack<E> {
         data.clear();
     }
 
+    @Override
+    public void remove(int i) {
+        data.remove(i);
+    }
+
+    @Override
+    public void removeFirst() {
+        data.remove(0);
+    }
+
     public boolean isInStack(String value){
         for(int i = 0; i < data.size(); i++){
             if(data.get(i).equals(value)){
@@ -112,5 +122,15 @@ public class StackVector<E> implements Stack<E> {
         }
 
         return false;
+    }
+
+    public int indexOf(String value){
+        for(int i = 0; i < data.size(); i++){
+            if(data.get(i).equals(value)){
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
