@@ -80,22 +80,22 @@ public class StackArraylist<E> implements Stack<E> {
 
     @Override
     public E get(int i) {
-        return data.get(i);
+        return data.get(i);//Se devuelve la posicion requerida
     }
 
     @Override
     public void clear() {
-        data.clear();
+        data.clear();//Se limpia el stack
     }
 
     @Override
     public void remove(int i) {
-        data.remove(i);
+        data.remove(i);//Se remueve el elemento de la posicion requerida
     }
 
     @Override
     public void removeFirst() {
-        data.remove(0);
+        data.remove(0);//Se remueve el primer elemento
     }
     
 }

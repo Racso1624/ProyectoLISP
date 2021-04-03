@@ -69,7 +69,7 @@ public class StackVector<E> implements Stack<E> {
     @Override
     public E get(int i) {
 
-        return data.get(i);
+        return data.get(i);//Se regresa el valor de la posicion requerida
 
     }
 
@@ -101,36 +101,36 @@ public class StackVector<E> implements Stack<E> {
 
     @Override
     public void clear() {
-        data.clear();
+        data.clear();//Se limpia el stack
     }
 
     @Override
     public void remove(int i) {
-        data.remove(i);
+        data.remove(i);//Se remueve la posicion deseada
     }
 
     @Override
     public void removeFirst() {
-        data.remove(0);
+        data.remove(0);//Se remueve el primer elemento
     }
 
     public boolean isInStack(String value){
         for(int i = 0; i < data.size(); i++){
             if(data.get(i).equals(value)){
-                return true;
+                return true;//Se verifica que el valor requerido se encuentre dentro del stack
             }
         }
 
-        return false;
+        return false;//Si no, se regresa false
     }
 
     public int indexOf(String value){
         for(int i = 0; i < data.size(); i++){
             if(data.get(i).equals(value)){
-                return i;
+                return i;//Regresa el index del valor requerido en el stack
             }
         }
 
-        return -1;
+        return -1;//Si no se regresa el -1
     }
 }

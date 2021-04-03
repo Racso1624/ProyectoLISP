@@ -246,53 +246,55 @@ public class Interprete {
                 String nuevocodigo = verificarFuncion(clave);//Se obtiene el codigo de la funciom
                 stackVector.clear();//Se limpia el Stack
                 verificarSintaxis(nuevocodigo);//Se ingresa el nuevo codigo al Stack
-                if(!stackVector.isInStack(nombreFuncion)){
-                    String parametro = regresarParametro(clave);   
-                    stackVector = cambiarParametro(stackVector, parametro, valor);
+                if(!stackVector.isInStack(nombreFuncion)){//Si el nombre de la funcion no se encuentra en el Stack
+                    String parametro = regresarParametro(clave);//Se cambia el parametro
+                    stackVector = cambiarParametro(stackVector, parametro, valor);//Y se pasa el codigo
                 }
-                else{
-                    recursivo = true;
-                    codigoRecursivo = stackVector; 
-                    cantidadCiclo = Integer.parseInt(valor);
+                else{//Si el nombre de la funcion se encuentra en el Stack 
+                    recursivo = true;//Es recursivo
+                    codigoRecursivo = stackVector;//El codigo se almacena en el Stack de codigoRecursivo
+                    cantidadCiclo = Integer.parseInt(valor);//Y se inicia la variable de la cantidad de ciclo
                 }            
             }
             else{
-                System.out.println("Codigo incorrecto, operaciones no validas");
+                System.out.println("Codigo incorrecto, operaciones no validas");//Si no es ninguna el codigo es incorrecto
                 var = true;
             }
 
-            if(recursivo && (cantidadCiclo != ciclo) && (cantidadCiclo != -2)){
+            if(recursivo && (cantidadCiclo != ciclo) && (cantidadCiclo != -2)){//Si es recursivo y el ciclo no ha terminado, sigue haciendo operaciones 
                 var = false;
             }
 
-            if(recursivo && (cantidadCiclo != ciclo) && (cantidadCiclo != -2) && condicional == true){
-                //sumar el ciclo del parametro
+            if(recursivo && (cantidadCiclo != ciclo) && (cantidadCiclo != -2) && condicional == true){//Si es recursivo, el ciclo no termina y esta en el cond, se suma uno al ciclo
+                //Sumar el ciclo del parametro
                 ciclo++;
             }
         }
-        stackVector.clear();
-        stackRecursivo.clear();
-        codigoRecursivo.clear();
+        stackVector.clear();//Se limpia el Stack Prinicipal
+        stackRecursivo.clear();//Se limpia el Stack Recursivo
+        codigoRecursivo.clear();//Se limpia el Almacenamiento del Codigo Recursivo
     }
     
+    //Metodo de verificar Sintaxis
     public void verificarSintaxis(String linea){
-
+        //Se reemplazan los parentesis por espacios en blanco
         String nuevaLinea = linea.replace("(", "");
         nuevaLinea = nuevaLinea.replace(")", "");
 
+        //Se separa el codigo en un arry
         String[] lineasplit = nuevaLinea.split(" ");
-
+        //Se itera en el array y se guarda en el Stack
         for(int i = 0; i < lineasplit.length; i++){
             stackVector.push(lineasplit[i]);
         }
-
     }
 
+    //Metodo de verificar Parentesis
     public boolean verificarParentesis(String codigo){
-
+        //Se inician los contadores de parentesis abiertos y cerrados
         int contadora = 0;
         int contadorc = 0;
-
+        //Se cuenta la cantidad de parentesis
         for(int i = 0; i < codigo.length(); i++){
             if(codigo.charAt(i) == '('){
                 contadora++;
@@ -301,199 +303,176 @@ public class Interprete {
                 contadorc++;
             }
         }
-
+        //Si el contador es igual de los dos parentesis se termina la espera del ingreso
         if(contadora == contadorc){
             return true;
         }
-
+        //Si no, se sigue esperando a que sean iguales
         return false;
-
     }
 
+    //metodo de verificar Funcion
     public String verificarFuncion(String nombrefuncion){
-
+        //Se itera en el Arraylist de las funcions, buscando el nombre de la funcions
         for(int i = 0; i < stackArraylist.size(); i++){
             if(nombrefuncion.equals(stackArraylist.get(i).getNombre())){
-                return stackArraylist.get(i).getCodigo();
+                return stackArraylist.get(i).getCodigo();//Si se encuentra, se regresa el codigo de la funcion
             }
         }
-
+        //Si no se encuentra se regresa null
         return "null";
     }
 
+    //Metodo de cantidad Funcion
     public int cantidadFuncion(String nombrefuncion){
-
+        //Se inicializa la cantidad
         int cantidad = 0;
-
+        //Se itera en el stack
         for(int i = 0; i < stackVector.size(); i++){
             if(nombrefuncion.equals(stackVector.get(i))){
-                cantidad++;
+                cantidad++;//Si se encuentra el nombre de la funcion, se suma 1
             }
         }
-
+        //Se regresa la cantidad
         return cantidad;
     }
 
-    public StackVector<Integer> posicionesFuncion(String nombrefuncion){
-
-        StackVector<Integer> posiciones = new StackVector<Integer>();
-
-        for(int i = 0; i < stackVector.size(); i++){
-            if(nombrefuncion.equals(stackVector.get(i))){
-                posiciones.push(i);
-            }
-        }
-
-        return posiciones;
-    }
-
+    //Metodo de codigo Funcion
     public String codigoFuncion(String nombrefuncion){
-
+        //Se itera en el Arraylist de las funcions
         for(int i = 0; i < stackArraylist.size(); i++){
             if(nombrefuncion.equals(stackArraylist.get(i).getNombre())){
-                return stackArraylist.get(i).getCodigoCompleto();
+                return stackArraylist.get(i).getCodigoCompleto();//Si se encuentra el nombre de la funcion, se regresa el codigo completo de toda la funcion
             }
         }
-
+        //Si no, se regresa null
         return "null";
     }
 
+    //Metodo de regresar Parametro
     public String regresarParametro(String nombrefuncion){
-
+        //Se itera en el Arraylist de las funcions
         for(int i = 0; i < stackArraylist.size(); i++){
             if(nombrefuncion.equals(stackArraylist.get(i).getNombre())){
-                return stackArraylist.get(i).getParametro();
+                return stackArraylist.get(i).getParametro();//Si se encuentra el nombre de la funcion, se regresa el nombre del parametro
             }
         }
-
+        //Si no, se regresa null
         return "null";
     }
     
+    //Metodo de cambiar Parametro
     public StackVector<String> cambiarParametro(StackVector<String> stackVector, String parametro, String valor) {
-
+        //Se inicia un nuevo Stack
         StackVector<String> valores = new StackVector<String>();
-        //for para recorrer todos los elementos en el stack
+        //For para recorrer todos los elementos en el stack
         for(int i = 0; i< stackVector.size(); i++) {
-           
+            //Se toma cada elemento del Stack
             String llave = stackVector.get(i);
 
-            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
-           if(llave.equals(parametro)) {
-               valores.push(valor);
-           } else{
-               valores.push(llave);
-           }
+            //Encontrar si uno de los elementos ya es una llave y remplazar la llave por el valor
+            if(llave.equals(parametro)) {
+                valores.push(valor);//Si se encuentra el parametro, se cambia por el valor de este
+            } else{
+                valores.push(llave);//Si no, solo se regresa el elemento del Stack
+            }
         }
-        //retornando 
+        //Se regresa el Stack de los valores 
         return valores;
     }
 
-    public StackVector<String> cambiarCodigo(StackVector<String> stackVector, String funcion, String codigo) {
-
-        StackVector<String> valores = new StackVector<String>();
-        //for para recorrer todos los elementos en el stack
-        for(int i = 0; i< stackVector.size(); i++) {
-           
-            String llave = stackVector.get(i);
-
-            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
-           if(llave.equals(funcion)) {
-               valores.push(codigo);
-           } else{
-               valores.push(llave);
-           }
-        }
-        //retornando 
-        return valores;
-    }
-
-    public boolean esNumero(String string) {        
+    //Metodo es Numero
+    public boolean esNumero(String string) {  
+        //Si el elemento es numero se regresa true      
         try {
             int valor = Integer.parseInt(string);
             return true;
         } catch (NumberFormatException e) {
-            return false;
+            return false;//Si no, se regresa false
         }
-        
     }
 
+    //Metodo de cambiar True
     public void cambiarTrue(String lineacodigo){
-
+        //Se limpia el Stack principal y se hace un nuevo codigo
         stackVector.clear();
         String nuevoCodigo = "";
 
+        //Se agregan espacios a los parentesis
         String nuevaLinea = lineacodigo.replace("(", "( ");
         nuevaLinea = nuevaLinea.replace(")", " )");
 
+        //Se separa el string en un array
         String[] lineasplit = nuevaLinea.split(" ");
-
+        //Se hace un nuevo stack
         StackVector<String> nuevoVector = new StackVector<String>();
-
+        //Se itera en el array del codigo ingresado
         for(int i = 0; i < lineasplit.length; i++){
-            nuevoVector.push(lineasplit[i]);
+            nuevoVector.push(lineasplit[i]);//El codigo se ingresa al stack
         }
-
+        //Se inician las variables de los parentesis
         int contadorParentesisAbierto = 0; 
         int contadorParentesisCerrado = 0; 
-
+        //Se itera en el nuevo stack
         for(int i = 0; i< nuevoVector.size(); i++) {
-           
+            //Se toma el valor del stack
             String llave = nuevoVector.get(i);
 
-            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
+            //Encontrar si hay parentesis y agregar la cuenta de los parentesis
             if(llave.equals("(")) {
                 contadorParentesisAbierto++;
             }
             else if(llave.equals(")")){
                 contadorParentesisCerrado++;
             }
-
+            //Revisar la posicion de los parentesis y tomar el codigo de esa posicion especifica
             if(contadorParentesisAbierto == 5 && contadorParentesisCerrado != 5 && (llave.equals("(") == false) && (llave.equals(")") == false)){
                 nuevoCodigo += llave;
                 nuevoCodigo += " ";
             }
         }
-
+        //Usar el metodo verificarSintaxis y asi ingresa el codigo al stack principal
         verificarSintaxis(nuevoCodigo);
     }
 
+    //Metodo cambiar False
     public void cambiarFalse(String lineacodigo){
-
+        //Limpiar el stack principal y crear un nuevo codigo
         stackVector.clear();
         String nuevoCodigo = "";
-
+        //Agregar espacios a los parentesis del codigo ingresado
         String nuevaLinea = lineacodigo.replace("(", "( ");
         nuevaLinea = nuevaLinea.replace(")", " )");
-
+        //Separar todo en un array
         String[] lineasplit = nuevaLinea.split(" ");
-
+        //Crear un nuevo stack
         StackVector<String> nuevoVector = new StackVector<String>();
-
+        //Iterar en el array del codigo ingresado
         for(int i = 0; i < lineasplit.length; i++){
-            nuevoVector.push(lineasplit[i]);
+            nuevoVector.push(lineasplit[i]);//Ingresar el codigo al stack
         }
-
+        //Iniciar las variables de los parentesis
         int contadorParentesisAbierto = 0; 
         int contadorParentesisCerrado = 0;
-
+        //Se itera en el nuevo stack
         for(int i = 0; i< nuevoVector.size(); i++) {
-           
+            //Tomar el valor de cada elemento del stack
             String llave = nuevoVector.get(i);
 
-            //ver si uno de los elementos ya es una llave y remplazar la llave por el valor
+            //Encontrar si hay un parentesis y aumentar la cuenta
             if(llave.equals("(")) {
                 contadorParentesisAbierto++;
             }
             else if(llave.equals(")")){
                 contadorParentesisCerrado++;
             }
-
+            //Si se llega a la posicion especifica, tomar el codigo de esa posicion
             if(contadorParentesisAbierto >= 6 &&contadorParentesisCerrado != 6 && (llave.equals("(") == false) && (llave.equals(")") == false)){
                 nuevoCodigo += llave;
                 nuevoCodigo += " ";
             }
         }
-        
+        //Por medio del metodo de verificarSintaxis, ingresar el codigo tomado al stack principal
         verificarSintaxis(nuevoCodigo);
     }   
 

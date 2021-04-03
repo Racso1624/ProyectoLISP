@@ -1,9 +1,3 @@
-/***********************
- * 
- * Predicados
- * 
- * ********************/
-
 /**
  * 
  * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García

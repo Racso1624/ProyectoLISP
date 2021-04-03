@@ -1,11 +1,9 @@
 //importando clases
 import java.util.HashMap;
-
-
 /***************************************
  * @author 
  * 
- * Clase SetQueue, funciona para poder 
+ * Clase SetQ, funciona para poder 
  * agregar valores a un diccionario 
  * y tambien para verificar si un String
  * ya es una variable o no.
