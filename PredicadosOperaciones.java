@@ -18,8 +18,6 @@ public class PredicadosOperaciones {
     
     public String ProcesoMetodos(String instrucc){
     	
-    	//Imprimimos la instruccion que ingrese el usuario
-        System.out.println(instrucc);
         String respuest="";
         
         //Condicional para poder establecer cuando se mando a llamar a cierto predicado

@@ -71,11 +71,6 @@ public class Interprete {
 
             //Se toma el valor 0 para saber el tipo de operacion
             String clave = stackVector.get(0);
-            System.out.println(clave);
-
-            //(defun factorial (n) (cond (= n 0) (1) (* n (factorial (- n 1)))))
-
-            //(defun fibonacci (n) (cond (< n 2) (n) (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
             
             //Si es aritmetico
             if(clave.equals("-") || clave.equals("+") || clave.equals("*") || clave.equals("/")){
@@ -236,6 +231,33 @@ public class Interprete {
                 //Se usa el metodo del predicado
                 String respuesta = predicados.ProcesoMetodos(expresion);
                 System.out.println(respuesta);//Se imprime
+                var = true;//La variable se hace verdadera
+            }
+            //Si es atom
+            else if(clave.equals("atom")){
+                //Se toma la expresion
+                String expresion = "";
+                for(int i = 0; i < stackVector.size(); i++){
+                    expresion += stackVector.get(i);
+                    expresion += " ";   
+                }
+                //Se usa el metodo del predicado
+                String respuesta = predicados.ProcesoMetodos(expresion);
+                System.out.println(respuesta);//Se imprime
+                var = true;//La variable se hace verdadera
+            }
+            //Si es una variable ingresada anteriormente con valor
+            else if(setq.encontrarValor(clave)){
+                //Se cambia por su valor
+                stackVector = setq.buscarValor(stackVector);
+                //Se toma la expresion
+                String expresion = "";
+                for(int i = 0; i < stackVector.size(); i++){
+                    expresion += stackVector.get(i);
+                    expresion += " ";   
+                }
+                //Se imprime la expresion
+                System.out.println(expresion);
                 var = true;//La variable se hace verdadera
             }
             //Si es una funcion definida anteriormente

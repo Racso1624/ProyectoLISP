@@ -1,7 +1,13 @@
 import java.util.Scanner;
-
+//Clase Main
 public class Main {
     
+    //Funciones para probar el Interprete:
+    //(defun factorial (n) (cond (= n 0) (1) (* n (factorial (- n 1)))))
+    //(defun fibonacci (n) (cond (< n 2) (n) (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
+    //(defun conversion (fahrenheit) (* (- fahrenheit 32) 0.55555))
+
+    //Se hace el Main
     public static void main(String[] args) {
         //Iniciar las instancias
         Interprete interprete = new Interprete();

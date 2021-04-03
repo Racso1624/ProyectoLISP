@@ -47,9 +47,9 @@ public class Setq {
 
 
     /** 
-     * Pre: Se ingresa la llave
-     * @param llave es el nombre de la llave para poder buscar el valor
-     * Post: retorna el valor de la llave dada
+     * Pre: Se ingresa el stack
+     * @param stackVector es el stack principal
+     * Post: Se retorna un nuevo stack
      */
     public StackVector<String> buscarValor(StackVector<String> stackVector) {
 
@@ -71,8 +71,20 @@ public class Setq {
 
         //retornando 
         return valores;
-
     }
 
-    
+    /** 
+     * Pre: Se ingresa la clave
+     * @param clave es la clave que indica la operacion
+     * Post: Se retorna un booleano
+     */
+    public boolean encontrarValor(String clave) {
+        //Encontrar si la clave es una llave
+        if(mapaLisp.containsKey(clave)) {
+            return true;//se regresa verdadero
+        } 
+        //retornando 
+        return false;
+    }
+
 }
