@@ -1,6 +1,3 @@
-import java.util.Arrays;
-import java.util.List;
-
 /***********************
  * 
  * Predicados
@@ -16,7 +13,6 @@ import java.util.List;
 
 public class PredicadosOperaciones {
 	//Establecemos un arraylist con los operadores reservados
-    private final List<String> operadoresReservados = Arrays.asList("atom", "equal", "list", ">", "<");
 
     public PredicadosOperaciones(){}
 
@@ -68,6 +64,9 @@ public class PredicadosOperaciones {
         if(letra.equals("<")){
         	menorQue=true;
         	}
+        if(letra.equals("=")){
+            equal = true;
+        }
 
         //Cuando la operacion es del tipo Atom
         if(atom==true){
@@ -77,7 +76,7 @@ public class PredicadosOperaciones {
                 respuest="true";
             }
             else{
-                respuest="nil";
+                respuest="false";
             }
         }
 
@@ -92,7 +91,7 @@ public class PredicadosOperaciones {
                     respuest="true";
                 }
                 else{
-                    respuest="nil";
+                    respuest="false";
                 }
             }
         }
@@ -126,7 +125,7 @@ public class PredicadosOperaciones {
                     if (primerNumero > segundoNumero) {
                         respuest = "true";
                     } else {
-                        respuest = "nil";
+                        respuest = "false";
                     }
                 }
                 catch (Exception e){
@@ -149,7 +148,7 @@ public class PredicadosOperaciones {
                     if (primerNumero < segundoNumero) {
                         respuest = "true";
                     } else {
-                        respuest= "nil";
+                        respuest= "false";
                     }
                 }
                 catch (Exception e){
