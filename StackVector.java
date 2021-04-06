@@ -1,6 +1,5 @@
 /***************************************
- * @author Oscar Fernando López Barrios
- * Carné 20679
+ * @author 
  * Algoritmos y Estructuras de Datos
  * 
  * Clase: StackVector
