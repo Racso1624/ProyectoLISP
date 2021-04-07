@@ -7,6 +7,7 @@
  * diferentes predicados.
  ***************************************/
 
+//Clase PredicadosOperaciones
 public class PredicadosOperaciones {
 
     /** 

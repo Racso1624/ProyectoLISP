@@ -6,12 +6,12 @@
  * la instruccion del Quote
  ***************************************/
 
- //Clase Quote
-class Quote{
+//Clase Quote
+public class Quote{
 
 	/** 
-     * Constructor
-     */
+    * Constructor
+    */
 	public Quote(){}
 
 	/**
