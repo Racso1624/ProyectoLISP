@@ -1,6 +1,11 @@
-/**
- * Interprete
- */
+/**********************************************
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
+ * 
+ * Clase Interprete, encargada de interpretar
+ * las expresiones de codigo y realizar
+ * las operaciones deseadas por el; usuario.
+ **********************************************/
 public class Interprete {
 
     //Stacks
@@ -14,9 +19,17 @@ public class Interprete {
     PredicadosOperaciones predicados = new PredicadosOperaciones();
     StackArraylist<Funciones> stackArraylist = new StackArraylist<Funciones>();
 
-    //Constructor
+    /** 
+     * Constructor
+     */
     public Interprete(){}
 
+    
+    /** 
+     * Pre: Se ingresa el codigo
+     * @param codigo es el codigo ingresado por el usuario
+     * Post: Se interpreta y se imprime el resultado
+     */
     //Metodo principal del Interprete
     public void Interpretar(String codigo){
 
@@ -87,32 +100,47 @@ public class Interprete {
                 //Si tiene espacios se utiliza Calculadora 2
                 if(expresion.contains(" ")) {
                     String resultado = aritmeticas.Calculadora2(expresion);
-                    System.out.println(resultado);//Se regresa el resultado
 
                     if(recursivo){//Si es recursivo
                         stackRecursivo.removeFirst();//Se remueve el primer valor del Stack de los resultados de recursividad
                         stackRecursivo.push(resultado);//Se ingresa el resultado nuevo al Stack de recursividad
                         condicional = true;//La condicional se vuelve verdadera
+                        if(ciclo == cantidadCiclo){
+                            System.out.println(resultado);//Se regresa el resultado
+                        }
+                    }
+                    else if(!recursivo){
+                        System.out.println(resultado);//Se regresa el resultado
                     }
                     var = true;//Se vuelve verdadera la variable del ciclo
                 }
                 //Si no tiene espacios se usa Calculadora 1 
                 else {
                     String resultado = aritmeticas.Calculadora1(expresion);
-                    System.out.println(resultado);
 
                     if(recursivo){//Si es recursivo
                         stackRecursivo.removeFirst();//Se remueve el primer valor del Stack de los resultados de recursividad
                         stackRecursivo.push(resultado);//Se ingresa el resultado nuevo al Stack de recursividad
                         condicional = true;//La condicional se vuelve verdadera
+                        if(ciclo == cantidadCiclo){
+                            System.out.println(resultado);//Se regresa el resultado
+                        }
+                    }
+                    else if(!recursivo){
+                        System.out.println(resultado);//Se regresa el resultado
                     }
                     var = true;//Se vuelve verdadera la variable del ciclo
                 }
             }
             //Si es un Setq
-            else if(clave.equals("setq")){
+            else if(clave.equalsIgnoreCase("setq")){
                 //Se agregan los valores al Hashmap de Setq
-                setq.agregarValor(stackVector.get(1), stackVector.get(2));
+                if(stackVector.size() > 3){//Condicion para evitar errores
+                    System.out.println("ERROR, Operacion Invalida");
+                }
+                else{
+                    setq.agregarValor(stackVector.get(1), stackVector.get(2));
+                }
                 var = true;//Variable del ciclo verdadera
             }
             //Si es una definicion de funcion
@@ -120,15 +148,20 @@ public class Interprete {
                 //Se guarda el codigo completo de la funcion
                 String codigoFuncion = codigo;
                 //Se toma el codigo de la funcion
-                String expresion = "";
-                for(int i = 3; i < stackVector.size(); i++){
-                    expresion += stackVector.get(i);
-                    expresion += " ";   
+                if(!(stackVector.size() >= 4)){
+                    System.out.println("ERROR, Operacion Invalida");
                 }
-                //Se guardan todas las variables de la clase funciones
-                Funciones nuevaFuncion = new Funciones(stackVector.get(1), stackVector.get(2), expresion, codigoFuncion);
-                //Se guarda la instancia de la Funcion en el Stack
-                stackArraylist.push(nuevaFuncion);
+                else{
+                    String expresion = "";
+                    for(int i = 3; i < stackVector.size(); i++){
+                        expresion += stackVector.get(i);
+                        expresion += " ";   
+                    }
+                    //Se guardan todas las variables de la clase funciones
+                    Funciones nuevaFuncion = new Funciones(stackVector.get(1), stackVector.get(2), expresion, codigoFuncion);
+                    //Se guarda la instancia de la Funcion en el Stack
+                    stackArraylist.push(nuevaFuncion);
+                }
                 //Variable se hace verdadera
                 var = true;
             }
@@ -152,9 +185,11 @@ public class Interprete {
             else if(clave.equalsIgnoreCase("QUOTE")){
                 //Se toma la expresion
                 String expresion = "";
-                String[] lineasplit = codigo.split(" ");
+                String nuevaLinea = codigo.replace("(", "( ");
+                nuevaLinea = nuevaLinea.replace(")", " )");
+                String[] lineasplit = nuevaLinea.split(" ");
                 for(int i = 0; i < lineasplit.length; i++){
-                    if(!lineasplit[i].equalsIgnoreCase("QUOTE")){
+                    if(!lineasplit[i].equalsIgnoreCase("QUOTE") && i != 0 && i != lineasplit.length - 1){
                         expresion += lineasplit[i];
                         expresion += " ";
                     }
@@ -164,12 +199,13 @@ public class Interprete {
                 var = true;
             }
             //Si es condicional
-            else if(clave.equals("cond")){
+            else if(clave.equalsIgnoreCase("cond")){
                 //Si es recursivo
                 if(recursivo){
                     String parametro = regresarParametro(nombreFuncion);//Se revisa el parametro
                     stackVector = cambiarParametro(stackVector, parametro, String.valueOf(ciclo));//Se cambia por el ciclo
                 }
+                stackVector = setq.buscarValor(stackVector);//Buscar si hay alguna variable de SetQ
                 //Se toma la expresion condicional
                 String expresion = "";
                 for(int i = 1; i <= 3; i++){
@@ -190,7 +226,9 @@ public class Interprete {
                             String respuestafinal = stackVector.get(0);//Se toma la variable
                             if(esNumero(respuestafinal)){//Se revisa si es un numero
                                 if(recursivo){//Si es recursivo
-                                    System.out.println(respuestafinal);//Se imprime
+                                    if(cantidadCiclo == ciclo){
+                                        System.out.println(respuestafinal);//Se imprime
+                                    }
                                     stackRecursivo.push(respuestafinal);//Y se ingresa al Stack de recursividad
                                     var = true;
                                 }
@@ -202,7 +240,9 @@ public class Interprete {
                             else{//Si es una variable o letra
                                 if(respuestafinal.equals(regresarParametro(nombreFuncion))){//Se verifica que sea un parametro
                                     if(recursivo){//Si es recursivo se cambia el valor, por el valor del ciclo
-                                        System.out.println(ciclo);
+                                        if(ciclo == cantidadCiclo){
+                                            System.out.println(ciclo);
+                                        }
                                         stackRecursivo.push(String.valueOf(ciclo));
                                         var = true;
                                     }
@@ -221,7 +261,7 @@ public class Interprete {
                 }
             }
             //Si es list
-            else if(clave.equals("list")){
+            else if(clave.equalsIgnoreCase("list")){
                 //Se toma la expresion
                 String expresion = "";
                 for(int i = 0; i < stackVector.size(); i++){
@@ -234,7 +274,7 @@ public class Interprete {
                 var = true;//La variable se hace verdadera
             }
             //Si es atom
-            else if(clave.equals("atom")){
+            else if(clave.equalsIgnoreCase("atom")){
                 //Se toma la expresion
                 String expresion = "";
                 for(int i = 0; i < stackVector.size(); i++){
@@ -297,6 +337,12 @@ public class Interprete {
         codigoRecursivo.clear();//Se limpia el Almacenamiento del Codigo Recursivo
     }
     
+    
+    /** 
+     * Pre: Se ingresa el codigo
+     * @param linea es el codigo ingresado
+     * Post: Se analiza y se ingresa al stack
+     */
     //Metodo de verificar Sintaxis
     public void verificarSintaxis(String linea){
         //Se reemplazan los parentesis por espacios en blanco
@@ -311,6 +357,13 @@ public class Interprete {
         }
     }
 
+    
+    /** 
+     * Pre: Se ingresa el codigo
+     * @param codigo es el codigo ingresado
+     * @return boolean verifica si se cumple con la condicion
+     * Post: Se analiza y verifica brinda el valor booleano
+     */
     //Metodo de verificar Parentesis
     public boolean verificarParentesis(String codigo){
         //Se inician los contadores de parentesis abiertos y cerrados
@@ -333,6 +386,13 @@ public class Interprete {
         return false;
     }
 
+    
+    /** 
+     * Pre: Se ingresa el nombre de la funcion
+     * @param nombrefuncion es el nombre de la funcion a verificar
+     * @return String es el codigo de la funcion
+     * Post: Se regresa el codigo de la funcion
+     */
     //metodo de verificar Funcion
     public String verificarFuncion(String nombrefuncion){
         //Se itera en el Arraylist de las funcions, buscando el nombre de la funcions
@@ -345,6 +405,13 @@ public class Interprete {
         return "null";
     }
 
+    
+    /** 
+     * Pre: Se ingresa el nombre de la funcion
+     * @param nombrefuncion es el nombre de la funcion a verificar
+     * @return int es el numero de veces que se repite la funcion
+     * Post: Se regresa la cantidad de veces que se repite la funcion
+     */
     //Metodo de cantidad Funcion
     public int cantidadFuncion(String nombrefuncion){
         //Se inicializa la cantidad
@@ -359,6 +426,13 @@ public class Interprete {
         return cantidad;
     }
 
+    
+    /** 
+     * Pre: Se ingresa el nombre de la funcion
+     * @param nombrefuncion es el nombre de la funcion a verificar
+     * @return String es el codigo completo de la funcion
+     * Post: Se regresa el codigo completo de la funcion
+     */
     //Metodo de codigo Funcion
     public String codigoFuncion(String nombrefuncion){
         //Se itera en el Arraylist de las funcions
@@ -371,6 +445,13 @@ public class Interprete {
         return "null";
     }
 
+    
+    /** 
+     * Pre: Se ingresa el nombre de la funcion
+     * @param nombrefuncion es el nombre de la funcion a verificar
+     * @return String es el parametro de la funcion
+     * Post: regresa el parametro de la funcion
+     */
     //Metodo de regresar Parametro
     public String regresarParametro(String nombrefuncion){
         //Se itera en el Arraylist de las funcions
@@ -383,6 +464,15 @@ public class Interprete {
         return "null";
     }
     
+    
+    /** 
+     * Pre: Se ingresan los parametros de stack, parametro y valor
+     * @param stackVector es el stack que se desea verificar
+     * @param parametro es el parametro que se desea buscar
+     * @param valor es el valor por el que se desea cambiar
+     * @return StackVector<String> es el stack nuevo
+     * Post: Se cambia el parametro por el valor y se regresa un nuevo stack
+     */
     //Metodo de cambiar Parametro
     public StackVector<String> cambiarParametro(StackVector<String> stackVector, String parametro, String valor) {
         //Se inicia un nuevo Stack
@@ -403,6 +493,13 @@ public class Interprete {
         return valores;
     }
 
+    
+    /** 
+     * Pre: Se ingresa un valor
+     * @param string es el valor ingresado para verificar
+     * @return boolean indica si la condicion se cumple
+     * Post: Se verifica si es numero y se regresa el booleano
+     */
     //Metodo es Numero
     public boolean esNumero(String string) {  
         //Si el elemento es numero se regresa true      
@@ -414,6 +511,12 @@ public class Interprete {
         }
     }
 
+    
+    /**
+     * Pre: Se ingresa el codigo 
+     * @param lineacodigo es el codigo para verificar
+     * Post: El codigo de true se ingresa al stack
+     */
     //Metodo de cambiar True
     public void cambiarTrue(String lineacodigo){
         //Se limpia el Stack principal y se hace un nuevo codigo
@@ -457,6 +560,12 @@ public class Interprete {
         verificarSintaxis(nuevoCodigo);
     }
 
+    
+    /** 
+     * Pre: Se ingresa el codigo
+     * @param lineacodigo es el codigo a verificar
+     * Post: El codigo de false se ingresa al stack
+     */
     //Metodo cambiar False
     public void cambiarFalse(String lineacodigo){
         //Limpiar el stack principal y crear un nuevo codigo

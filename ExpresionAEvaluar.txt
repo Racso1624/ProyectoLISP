@@ -1,0 +1,51 @@
+/***************************************
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
+ ***************************************/
+Lista de expresiones para comprobar la funcionalidad del Intérprete acompañadas por el resultado esperado:
+-Operación Aritmética:
+(+ 2 3) --> 5
+(* (- 10 5) 5) --> 25
+
+-SetQ y operacion con variable:
+(Setq var 10)
+(+ var var) --> 20
+(Cond (< var 20)) --> true
+var --> 10
+
+-Quote:
+(Quote HOLA) --> HOLA
+'HOLA --> HOLA
+'+ 2 3 --> + 2 3
+
+-Operación con cond:
+(Cond (< 5 3)) --> false
+(Cond (= 5 3)) --> false
+(Cond (> 5 3)) --> true
+
+-List:
+(List 1 2 3) --> (1, 2, 3)
+
+-Atom
+(Atom 1) --> true
+(Atom 1 2 3) --> false
+
+-Funcion de suma:
+(defun sumar (n) (+ n n))
+(sumar 10) --> 20
+
+-Factorial:
+(defun factorial (n) (cond (= n 0) (1) (* n (factorial (- n 1)))))
+(factorial 5) --> 120
+
+-Fibonacci:
+(defun fibonacci (n) (cond (< n 2) (n) (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
+(fibonacci 10) --> 55
+
+-Conversión de grados:
+(defun conversion (fahrenheit) (* (- fahrenheit 32) 0.55555))
+(conversion 3) --> -16.11
+
+NOTA: Toda esta lista son ejemplos para la sintaxis del Intérprete, si desea se puede cambiar el nombre de los parametros y de las funciones,
+pero se debe de mantener la sintaxis utilizada para el correcto funcionamiento del intérprete.
+NOTA 2: Si se desea salir del intérprete escribir el comando: salir

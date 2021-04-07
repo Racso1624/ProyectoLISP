@@ -1,5 +1,6 @@
 /***************************************
- * @author 
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
  * 
  * Clase Aritmeticas, funciona para poder
  * recibir operaciones prefix y sacar el
@@ -8,9 +9,10 @@
 
 public class Aritmeticas {
 
-
+    /** 
+     * Constructor
+     */
     public Aritmeticas() { //agregando constructor
-
     }
 
 
@@ -43,54 +45,44 @@ public class Aritmeticas {
              try 
              { 
                  //si el elemento es un entero, se pushea a la pila
-                 pila.push(Double.parseDouble(aString));
-                 if(i==nuevoPrefix.length() -1) {
-                    System.out.println(aString + "                Push Operando                                    " + aString);
-                 } else {
-                    System.out.println(aString + "                Push Operando                                    "  +  Character.toString(nuevoPrefix.charAt(i+1)) + "," + aString);
-                 }
-                 
+                 pila.push(Double.parseDouble(aString));         
              }
              catch (Exception e)  //separando los elementos que no son numeros
              { 
-
+                double num1 = 0;
+                double num2 = 0;
                 //ya que hay una excecpcion, significa que tenemos un operador, por lo que tenemos que popear los dos numeros anteriores
-                double num1 = pila.pop();
-                double num2 = pila.pop();
+                try {
+                        num1 = pila.pop();
+                        num2 = pila.pop();
+                } catch (Exception exception) {
+                        return "ERROR, Operacion Invalida";
+                }
 
                 if(aString.equals("+")) {//viendo si el operador es suma
 
                     double suma = num1 + num2; //realizando la suma
                     pila.push(suma); //pusheando el resultado a la pila
-                    System.out.println("+                Sumar: pop, pop y push del resultado             " + suma);
-                   // resultado = Double.valueOf(suma);
-        
-        
+               
                 } if(aString.equals("*")) {//viendo si el operador es multiplicacion
         
                     double multip = num1 * num2; //realizando la suma
                     pila.push(multip); //pusheando el resultado a la pila
-                    System.out.println("*                Multiplicarar: pop, pop y push del resultado     " + multip);
-                   // resultado = Double.valueOf(multip);
-        
-        
+
                 } if(aString.equals("-")) {//viendo si el operador es resta
         
                     double resta = num1 - num2; //realizando la suma
                     pila.push(resta); //pusheando el resultado a la pila
-                    System.out.println("-                Restar: pop, pop y push del resultado           " + resta);
-                    //resultado = Double.valueOf(resta);
-        
-        
+
                 } if(aString.equals("/")) {//viendo si el operador es division
         
                     double divis = num1 / num2; //realizando la suma
                     pila.push(divis); //pusheando el resultado a la pila
-                    System.out.println("/                Dividir: pop, pop y push del resultado          " + divis);
-                    //resultado = Double.valueOf(divis);
-        
-        
-                } 
+
+                }
+                else{
+                    return "ERROR, Operacion Invalida";
+                }
 
 
              }  
@@ -103,8 +95,6 @@ public class Aritmeticas {
  
          //se finalizan las operaciones pero el resultado esta hasta arriba de la pila
          //se hace un peek para poder obtener dicho resultado
-         System.out.println("\nResultado de (" + expresion + ") es: " + resultado + "\n");
- 
          //retornando el resultado
          return resultado;
 
@@ -143,55 +133,40 @@ public class Aritmeticas {
             { 
                 //si el elemento es un entero, se pushea a la pila
                 pila.push(Double.parseDouble(aString));
-                if(i==nuevoPrefix.length() -1) {
-                   System.out.println(aString + "                Push Operando                                    " + aString);
-                } else {
-                   System.out.println(aString + "                Push Operando                                    "  +  Character.toString(nuevoPrefix.charAt(i+1)) + "," + aString);
-                }
-                
             }
             catch (Exception e)  //separando los elementos que no son numeros
             { 
-
+                double num1 = 0;
+                double num2 = 0;
                //ya que hay una excecpcion, significa que tenemos un operador, por lo que tenemos que popear los dos numeros anteriores
-               double num1 = pila.pop();
-               double num2 = pila.pop();
+                try {
+                    num1 = pila.pop();
+                    num2 = pila.pop();
+                } catch (Exception exception) {
+                    return "ERROR, Operacion Invalida";
+                }
+            
 
                if(aString.equals("+")) {//viendo si el operador es suma
 
                    double suma = num1 + num2; //realizando la suma
                    pila.push(suma); //pusheando el resultado a la pila
-                   System.out.println("+                Sumar: pop, pop y push del resultado             " + suma);
-                  // resultado = Double.valueOf(suma);
-       
-       
+
                } if(aString.equals("*")) {//viendo si el operador es multiplicacion
        
                    double multip = num1 * num2; //realizando la suma
                    pila.push(multip); //pusheando el resultado a la pila
-                   System.out.println("*                Multiplicarar: pop, pop y push del resultado     " + multip);
-                  // resultado = Double.valueOf(multip);
-       
-       
+
                } if(aString.equals("-")) {//viendo si el operador es resta
        
                    double resta = num1 - num2; //realizando la suma
                    pila.push(resta); //pusheando el resultado a la pila
-                   System.out.println("-                Restar: pop, pop y push del resultado           " + resta);
-                   //resultado = Double.valueOf(resta);
-       
-       
+ 
                } if(aString.equals("/")) {//viendo si el operador es division
        
                    double divis = num1 / num2; //realizando la suma
                    pila.push(divis); //pusheando el resultado a la pila
-                   System.out.println("/                Dividir: pop, pop y push del resultado          " + divis);
-                   //resultado = Double.valueOf(divis);
-       
-       
                } 
-
-
             }  
        }
 
@@ -202,8 +177,6 @@ public class Aritmeticas {
 
         //se finalizan las operaciones pero el resultado esta hasta arriba de la pila
         //se hace un peek para poder obtener dicho resultado
-        System.out.println("\nResultado de (" + expresion + ") es: " + resultado + "\n");
-
         //retornando el resultado
         return resultado;
 

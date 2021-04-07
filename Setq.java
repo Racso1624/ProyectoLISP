@@ -1,7 +1,8 @@
 //importando clases
 import java.util.HashMap;
 /***************************************
- * @author 
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
  * 
  * Clase SetQ, funciona para poder 
  * agregar valores a un diccionario 
@@ -13,6 +14,9 @@ public class Setq {
     //creando el hashmap tipo String, String
     HashMap<String, String> mapaLisp;
 
+    /** 
+    * Constructor
+    */
     public Setq(){
         mapaLisp= new HashMap<String, String>();
     }
@@ -21,6 +25,7 @@ public class Setq {
      * Pre: Se ingresa la llave y el valor
      * @param llave es la llave del valor agragado
      * @param valor es el nombre del valor a agregar
+     * Post: Se ingresan los valores al HashMap
      */
     public void agregarValor(String llave, String valor) {
 
@@ -41,10 +46,7 @@ public class Setq {
             mapaLisp.put(llave, valor);
 
         }
-
-
     }
-
 
     /** 
      * Pre: Se ingresa el stack

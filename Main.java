@@ -1,12 +1,28 @@
 import java.util.Scanner;
+
+/***************************************
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
+ * 
+ * Clase Main, es la clase donde se
+ * ingresan las expresiones de ccodigo
+ * y donde se imprime el resultado.
+ ***************************************/
+
 //Clase Main
 public class Main {
-    
+ 
     //Funciones para probar el Interprete:
     //(defun factorial (n) (cond (= n 0) (1) (* n (factorial (- n 1)))))
     //(defun fibonacci (n) (cond (< n 2) (n) (+ (fibonacci (- n 1)) (fibonacci (- n 2)))))
     //(defun conversion (fahrenheit) (* (- fahrenheit 32) 0.55555))
-
+    //(defun sumar (n) (+ n n))
+    
+    /** 
+     * Pre: Se ingresa el codigo
+     * @param args es el main
+     * Post: Se interpreta
+     */
     //Se hace el Main
     public static void main(String[] args) {
         //Iniciar las instancias

@@ -1,8 +1,11 @@
 /***************************************
- * @author 
- * Algoritmos y Estructuras de Datos
+ * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
+ * Universidad del Valle de Guatemala
  * 
- * Clase: StackVector
+ * Clase StackVector, encargada de manejar
+ * las instancias de StackVector, y utilizar
+ * diferentes metodos para almacenar 
+ * informacion.
  ***************************************/
 
 import java.util.EmptyStackException;
@@ -14,6 +17,9 @@ public class StackVector<E> implements Stack<E> {
     //Se crean las propiedades
     private Vector<E> data;
 
+    /** 
+     * Constructor
+     */
     //Se crea el metodo constructor
     public StackVector(){
 
@@ -65,6 +71,13 @@ public class StackVector<E> implements Stack<E> {
 
     }
 
+    
+    /** 
+     * Pre: Se ingresa la posicion del stack
+     * @param i es la posicion del stack
+     * @return E es el objecto que se regresa
+     * Post: Se regresa el objeto en esa posicion
+     */
     @Override
     public E get(int i) {
 
@@ -98,21 +111,42 @@ public class StackVector<E> implements Stack<E> {
 
     }
 
+    /** 
+     * Pre:Se encuentra el Stack con objetos
+     * Post: Se limpia el stack
+     */
     @Override
     public void clear() {
         data.clear();//Se limpia el stack
     }
 
+    
+    /** 
+     * Pre: Se encuentra el stack con objetos
+     * @param i es la posicion a remover
+     * Post: Se remueve la posicion designada del stack
+     */
     @Override
     public void remove(int i) {
         data.remove(i);//Se remueve la posicion deseada
     }
 
+    /** 
+     * Pre: Se encuentra el stack con objetos
+     * Post: Se remueve la posicion 0 del stack
+     */
     @Override
     public void removeFirst() {
         data.remove(0);//Se remueve el primer elemento
     }
 
+    
+    /** 
+     * Pre: Se encuentra el stack con valores
+     * @param value es el valor a buscar
+     * @return boolean es el booleano dependiendo de la condicion
+     * Post: Se devuelve un booleano si se encuentra el valor
+     */
     public boolean isInStack(String value){
         for(int i = 0; i < data.size(); i++){
             if(data.get(i).equals(value)){
@@ -123,6 +157,13 @@ public class StackVector<E> implements Stack<E> {
         return false;//Si no, se regresa false
     }
 
+    
+    /** 
+     * Pre: Se encuentra el stack con objetos
+     * @param value es el valor a buscar
+     * @return int es la posicion
+     * Post: Se devuelve la posicion del objeto si se encuentra en el stack
+     */
     public int indexOf(String value){
         for(int i = 0; i < data.size(); i++){
             if(data.get(i).equals(value)){

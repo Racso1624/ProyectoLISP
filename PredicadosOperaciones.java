@@ -1,21 +1,26 @@
-/**
- * 
+/***************************************
  * @author Oscar Fernando Lopez Barrios, Javier Mombiela y José Rodrigo Barrera García
  * Universidad del Valle de Guatemala
- *
- */
+ * 
+ * Clase PredicadosOperaciones, funciona para 
+ * comparar las expresiones con los
+ * diferentes predicados.
+ ***************************************/
 
 public class PredicadosOperaciones {
-	//Establecemos un arraylist con los operadores reservados
 
+    /** 
+     * Constructor
+     */
     public PredicadosOperaciones(){}
 
     /**
-     * 
+     * Pre: Se ingresa la instruccion
      * @param instrucc
      * @return el tipo de operacion segun el predicado
+     * Post: Se regresa el valor del predicado
      */
-    
+    //Metodo ProcesosMetodos
     public String ProcesoMetodos(String instrucc){
     	
         String respuest="";
@@ -41,13 +46,13 @@ public class PredicadosOperaciones {
         
         //If que serviran para comparar el primer caracter de nuestra operacion
 
-        if(letra.equals("a")){
+        if(letra.equalsIgnoreCase("a")){
         	atom=true;
         	}
-        if(letra.equals("e")){
+        if(letra.equalsIgnoreCase("e")){
         	equal=true;
         	}
-        if(letra.equals("l")){
+        if(letra.equalsIgnoreCase("l")){
         	list=true;
         	}
         if(letra.equals(">")){
